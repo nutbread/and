@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Automation scripts for creating Android applications" />
+	<meta name="keywords" content="android,application,app,template,java" />
+	<meta name="author" content="nutbread" />
+	<title>Android Application Template</title>
+	<link rel="shortcut icon" href="favicon.png" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+
+<div class="header_bar">
+	<div class="main main_no_overflow header">
+
+		<table class="header_table"><tbody>
+			<tr>
+				<td class="header_table_cell">
+					<div class="header_table_name">
+						<a class="header_table_name_user link_external link_author light_underline" href="https://nutbread.github.io/"><span>nutbread</span></a><span class="header_table_name_separator">/</span><a href="" class="header_table_name_title link_external link_title light_underline"><span>and</span></a>
+					</div>
+				</td>
+				<td class="header_table_cell">
+					<div class="header_table_separator"></div>
+				</td>
+				<td class="header_table_cell header_table_cell_full">
+					<div class="header_table_description">
+						<div class="header_table_description_name">Android application template</div>
+						<div class="header_table_description_body">Automation scripts for creating Android applications</div>
+					</div>
+				</td>
+				<td class="header_table_cell">
+					<a class="header_table_view_on_github link_external link_view_on_github light_nohover_color_hover" href="https://github.com/nutbread/and">
+						<div class="header_table_view_on_github_line1">view on</div>
+						<div class="header_table_view_on_github_line2">github</div>
+					</a>
+				</td>
+			</tr>
+		</tbody></table>
+
+	</div>
+</div>
+<div class="main body">
+
+	<h1 id="about"><span class="hardlink_text">About<a class="hardlink" href="#about"></a></span></h1>
+	<p>
+		This repository contains several batch scripts (for Windows) which help automate the creation of Android applications.
+	</p>
+	<p>
+		The form is approximately based on <a class="link_external light_underline" href="http://geosoft.no/development/android.html" target="_blank"><span>this tutorial</span></a>, except it uses a more up-to-date version of the Android tools and provides the steps in script format. These scripts can be modified or merged into something else (such as a python script,) but separate batch scripts is a simple enough starting point.
+	</p>
+
+	<h4 id="usage"><span class="hardlink_text">Usage<a class="hardlink" href="#usage"></a></span></h4>
+	<p>
+		This will describe the basic order the scripts should be used in, and when source files should be created/added.
+	</p>
+	<p>
+		<ol start="0">
+			<li>
+				<strong>Get the JDK and the Android SDK</strong><br />
+				There are two prerequisites that are necessary:<br />
+
+				<a class="link_external light_underline" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank"><span>JDK</span></a> - for Java compilation and tools<br />
+
+				<a class="link_external light_underline" href="https://developer.android.com/sdk/index.html" target="_blank"><span>Android SDK</span></a> - for everything Android related <span class="light">(this example uses the standalone version)</span><br />
+
+				Remember where you install them.
+			</li>
+			<li>
+				<strong>Edit <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/settings.bat" target="_blank"><span><code>settings.bat</code></span></a></strong><br />
+				Edit settings inside this file which will be changed for your project. Examples include:<br />
+				<code><em>DIR_JDK</em></code> <span class="light">(path to the JDK you installed)</span><br />
+				<code><em>DIR_ANDROID</em></code> <span class="light">(path to the Android SDK you installed)</span><br />
+				<code><em>PROJECT_NAME</em></code> <span class="light">(a unique name for your project; this is also used to create the device)</span><br />
+				<code><em>DOCUMENTATION_TITLE</em> <span class="light">(a title for the documentation)</span></code><br />
+				<code><em>DEVICE_*</em></code> <span class="light">(use <code>"%DIR_ANDROID%\tools\android" list target</code> to show available device targets)</span><br />
+				<code><em>KEYSTORE_*</em></code> <span class="light">(you may also want to remove/clear any password settings)</span><br />
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/init.bat" target="_blank"><span><code>init.bat</code></span></a></strong><br />
+				Creates all directories that will be used in the project.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/create-device.bat" target="_blank"><span><code>create-device.bat</code></span></a></strong><br />
+				Creates a virtual device in the <code>.android</code> directory.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/create-keystore.bat" target="_blank"><span><code>create-keystore.bat</code></span></a></strong><br />
+				Creates a file to store public/private keys used for signing.
+			</li>
+			<li>
+				<strong>Edit <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/AndroidManifest.xml" target="_blank"><span><code>AndroidManifest.xml</code></span></a></strong><br />
+				Modify any paths, variable names, or anything else for the project.
+			</li>
+			<li>
+				<strong>Create <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/src/io/nutbread/main/Main.java" target="_blank"><span>source code files</span></a> and <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/res/values/strings.xml" target="_blank"><span>resource files</span></a></strong><br />
+				Create any code and resources your project needs to run.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/create-R.bat" target="_blank"><span><code>create-R.bat</code></span></a></strong><br />
+				Creates the Android resource <code>R.java</code> file, used for locating any resources you create.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/compile.bat" target="_blank"><span><code>compile.bat</code></span></a></strong><br />
+				Compiles your project using Java.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/create-dex.bat" target="_blank"><span><code>create-dex.bat</code></span></a></strong><br />
+				Compiles into Android usable bytecode.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/create-apk-unsigned.bat" target="_blank"><span><code>create-apk-unsigned.bat</code></span></a></strong><br />
+				Creates an unsigned Android package.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/create-apk-signed.bat" target="_blank"><span><code>create-apk-signed.bat</code></span></a></strong><br />
+				Creates a signed Android package using the keystore.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/create-apk-final.bat" target="_blank"><span><code>create-apk-final.bat</code></span></a></strong><br />
+				Creates a <code>zipalign</code>'d version of the Android package, providing some optimization.
+			</li>
+		</ol>
+	</p>
+	<p>
+		To run and install in an Android emulator, use the following commands:
+	</p>
+	<p>
+		<ol start="1">
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/start-emulator.bat" target="_blank"><span><code>start-emulator.bat</code></span></a></strong><br />
+				Starts the emulator.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/install-in-emulator.bat" target="_blank"><span><code>install-in-emulator.bat</code></span></a> while the emulator is running</strong><br />
+				Installs the application onto the virtual device. May need some editing depending on how source code directories are set up.
+			</li>
+		</ol>
+	</p>
+	<p>
+		The following miscellaneous scripts are also available:
+	</p>
+	<p>
+		<ol start="1">
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/uninstall-in-emulator.bat" target="_blank"><span><code>uninstall-in-emulator.bat</code></span></a> while the emulator is running</strong><br />
+				Uninstalls the application from the virtual device. May also need some editing.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/install-on-device.bat" target="_blank"><span><code>install-on-device.bat</code></span></a></strong><br />
+				Installs the application onto a real plugged in device.
+			</li>
+			<li>
+				<strong>Run <a class="link_codebase light_underline" href="https://github.com/nutbread/and/blob/master/project/delete-device.bat" target="_blank"><span><code>delete-device.bat</code></span></a></strong><br />
+				Cleanly deletes the created virtual device.
+			</li>
+		</ol>
+	</p>
+	<p>
+		<strong>Note</strong>: emulation can be sped up if you have an Intel processor and install their <a class="link_external light_underline" href="https://software.intel.com/en-us/android/articles/intel-hardware-accelerated-execution-manager" target="_blank"><span>Hardware Accelerated Execution Manager</span></a>.<br />
+		The installer may also be found in the following directory depending on which components you chose to install:<br />
+		<code>%DIR_ANDROID%\extras\intel\Hardware_Accelerated_Execution_Manager</code>
+	</p>
+
+</div>
+
+
+</body>
+</html>
+
